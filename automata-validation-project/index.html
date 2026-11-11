@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive finite automata demonstrations for password, email and ATM PIN validation.">
+  <title>Automata Lab | Validation System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">A</span><span>Automata<span class="muted">Lab</span></span></a>
+    <nav><a href="#validators">Validators</a><a href="#theory">Automata theory</a><a href="#tests">Test suite</a></nav>
+    <span class="course-tag">21CSC301T · TASK 2</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow"><span class="pulse"></span> FORMAL LANGUAGE & AUTOMATA</div>
+      <h1>Real-world rules.<br><span>Finite-state logic.</span></h1>
+      <p class="hero-copy">Explore how deterministic finite automata can validate common input formats. Enter a value, watch its state transitions, and inspect the accepted language.</p>
+      <a class="primary-link" href="#validators">Explore validators <span>↓</span></a>
+      <div class="hero-stats">
+        <div><strong>03</strong><span>Automata models</span></div>
+        <div><strong>30+</strong><span>Test examples</span></div>
+        <div><strong>DFA</strong><span>Core model</span></div>
+      </div>
+    </section>
+
+    <section id="validators" class="section">
+      <div class="section-heading"><div><div class="eyebrow">INTERACTIVE WORKBENCH</div><h2>Choose a validator</h2></div><p>Each validator processes the input character by character and reports the final state.</p></div>
+      <div class="tabs" role="tablist" aria-label="Validators">
+        <button class="tab active" data-tab="password" role="tab" aria-selected="true">01 <span>Password</span></button>
+        <button class="tab" data-tab="email" role="tab" aria-selected="false">02 <span>Email</span></button>
+        <button class="tab" data-tab="pin" role="tab" aria-selected="false">03 <span>ATM PIN</span></button>
+      </div>
+
+      <div class="validator-layout">
+        <article class="panel input-panel">
+          <div class="panel-kicker" id="model-number">MODEL 01 / DFA</div>
+          <h3 id="model-title">Password verification</h3>
+          <p id="model-description">A password must satisfy the selected length and character-class requirements.</p>
+          <label for="user-input" id="input-label">Enter a password</label>
+          <div class="input-wrap"><input id="user-input" type="password" placeholder="e.g. Automata@2026" autocomplete="off"><button id="toggle-visibility" class="eye" type="button" aria-label="Show password">Show</button></div>
+          <div class="hint" id="input-hint">8–16 characters · uppercase · lowercase · digit · special character</div>
+          <button id="run-button" class="run-button">Run automaton <span>→</span></button>
+          <div id="result" class="result neutral" aria-live="polite"><span class="result-icon">◎</span><div><strong>Ready to validate</strong><small>Enter an input and run the automaton.</small></div></div>
+          <div class="transition-title"><span>TRANSITION TRACE</span><span id="trace-count">0 steps</span></div>
+          <div id="trace" class="trace"><p class="empty-trace">Your state transitions will appear here.</p></div>
+        </article>
+
+        <aside class="panel model-panel">
+          <div class="panel-kicker">FORMAL MODEL</div>
+          <h3>Automaton overview</h3>
+          <div class="model-chip" id="model-chip">DFA · deterministic</div>
+          <div id="state-visual" class="state-visual" aria-label="Automaton state summary"></div>
+          <div class="model-details">
+            <div><span>Alphabet (Σ)</span><p id="alphabet">ASCII characters grouped by type</p></div>
+            <div><span>Acceptance condition</span><p id="acceptance">All required character classes and length constraints are satisfied.</p></div>
+            <div><span>Language (L)</span><p id="language">Strings accepted by this validator.</p></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="theory" class="section theory-section">
+      <div class="section-heading"><div><div class="eyebrow">CONCEPTS IN PRACTICE</div><h2>What the automaton checks</h2></div><p>Formal definitions and assumptions used by each model.</p></div>
+      <div class="theory-grid" id="theory-grid"></div>
+      <div class="note"><strong>Important distinction</strong><p>These models validate input syntax and a small set of structural rules. They do not establish whether an email account exists, whether a password is safe against attacks, or whether an ATM PIN matches a bank account. Those require external systems and additional processing.</p></div>
+    </section>
+
+    <section id="tests" class="section">
+      <div class="section-heading"><div><div class="eyebrow">VALIDATION EVIDENCE</div><h2>Built-in test suite</h2></div><p>Each application includes accepted and rejected examples to verify the model.</p></div>
+      <div class="test-controls">
+        <div class="test-filter" role="group" aria-label="Test suite selection">
+          <button class="filter active" data-suite="password">Password</button>
+          <button class="filter" data-suite="email">Email</button>
+          <button class="filter" data-suite="pin">ATM PIN</button>
+        </div>
+        <span id="test-summary" class="test-summary">10 test cases</span>
+      </div>
+      <div class="table-wrap"><table><thead><tr><th>INPUT</th><th>EXPECTED</th><th>REASON</th><th>CHECK</th></tr></thead><tbody id="test-body"></tbody></table></div>
+      <div class="note small-note"><strong>How to use the tests</strong><p>Select a test row to load its input into the validator. Run it to view the actual transition trace.</p></div>
+    </section>
+  </main>
+
+  <footer><div class="brand"><span class="brand-mark">A</span><span>Automata<span class="muted">Lab</span></span></div><p>Formal Language and Automata · Assessment Task 2</p><p class="footer-small">Educational demonstration · Client-side only · No data is stored or transmitted</p></footer>
+  <script src="script.js"></script>
+</body>
+</html>
